@@ -1,21 +1,23 @@
 package com.gateway.jwt.security;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.*;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import org.springframework.http.HttpMethod; // Asegúrate de importar esto arriba
+import static com.gateway.jwt.security.PublicRoutes.PUBLIC_GET; // Asegúrate de importar esto arriba
+import static com.gateway.jwt.security.PublicRoutes.PUBLIC_POST; //importa las rutas publicas de jwt
+import static com.gateway.redireccion.clientes.ClientesPublicRoutes.CLIENTES_PUBLIC_GET; //importa las rutas publicas de API Gateway
+import static com.gateway.redireccion.gestion.GestionPublicRoutes.GESTION_PUBLIC_GET; //importa las rutas publicas de API Productos
+import static com.gateway.redireccion.productos.ProductosPublicRoutes.PRODUCTOS_PUBLIC_GET; //importa las rutas publicas de API Clientes
+import com.gateway.redireccion.ventas.VentasPublicRoutes; //importa las rutas publicas de API Ventas
 
-import static com.gateway.jwt.security.PublicRoutes.*; //importa las rutas publicas de jwt
-import static com.gateway.redireccion.gestion.GestionPublicRoutes.*; //importa las rutas publicas de API Gateway
-import static com.gateway.redireccion.productos.ProductosPublicRoutes.*; //importa las rutas publicas de API Productos
-import static com.gateway.redireccion.clientes.ClientesPublicRoutes.*; //importa las rutas publicas de API Clientes
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
@@ -40,6 +42,11 @@ public class SecurityConfig {
 
                 // URL públicas API Clientes
                 .requestMatchers(HttpMethod.GET, CLIENTES_PUBLIC_GET).permitAll()   // lista pública api Clientes GET
+
+                // URL públicas API Ventas
+                .requestMatchers(HttpMethod.GET, VentasPublicRoutes.VENTAS_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.POST, VentasPublicRoutes.VENTAS_PUBLIC_POST).permitAll()
+
                 
                 // Otras URL Token obligatorio
                 .anyRequest().authenticated()

@@ -28,7 +28,7 @@ public class VentasProxyController {
     private final RestTemplate restTemplate;
     private final JwtService jwtService;
 
-    @RequestMapping(value = "/**", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+    @RequestMapping(value = {"", "/", "/**"}, method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
     public ResponseEntity<?> proxyVentas(HttpServletRequest request,
                                          @RequestBody(required = false) String body,
                                          @RequestHeader HttpHeaders headers) {
@@ -47,6 +47,13 @@ public class VentasProxyController {
             }
         });
         cleanHeaders.setContentType(MediaType.APPLICATION_JSON);
+
+        System.out.println("🔁 REQUEST RECIBIDO");
+        System.out.println("Método: " + method);
+        System.out.println("OriginalPath: " + originalPath);
+        System.out.println("Target URL final: " + targetUrl);
+        System.out.println("Body recibido: " + body);
+
 
         HttpEntity<String> entity = new HttpEntity<>(body, cleanHeaders);
 

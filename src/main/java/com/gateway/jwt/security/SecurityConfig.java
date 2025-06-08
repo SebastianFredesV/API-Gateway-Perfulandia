@@ -10,14 +10,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.gateway.jwt.security.PublicRoutes.PUBLIC_GET; // Asegúrate de importar esto arriba
-import static com.gateway.jwt.security.PublicRoutes.PUBLIC_POST; //importa las rutas publicas de jwt
-import static com.gateway.redireccion.clientes.ClientesPublicRoutes.CLIENTES_PUBLIC_GET; //importa las rutas publicas de API Gateway
-import static com.gateway.redireccion.gestion.GestionPublicRoutes.GESTION_PUBLIC_GET; //importa las rutas publicas de API Productos
-import static com.gateway.redireccion.productos.ProductosPublicRoutes.PRODUCTOS_PUBLIC_GET; //importa las rutas publicas de API Clientes
-import com.gateway.redireccion.ventas.VentasPublicRoutes; //importa las rutas publicas de API Ventas
+import static com.gateway.jwt.security.PublicRoutes.PUBLIC_GET;
+import static com.gateway.jwt.security.PublicRoutes.PUBLIC_POST; // Asegúrate de importar esto arriba
+import static com.gateway.redireccion.clientes.ClientesPublicRoutes.CLIENTES_PUBLIC_GET; //importa las rutas publicas de jwt
+import static com.gateway.redireccion.gestion.GestionPublicRoutes.GESTION_PUBLIC_GET; //importa las rutas publicas de API Gateway
+import static com.gateway.redireccion.productos.ProductosPublicRoutes.PRODUCTOS_PUBLIC_GET; //importa las rutas publicas de API Productos
+import com.gateway.redireccion.ventas.CuponesPublicRoutes; //importa las rutas publicas de API Clientes
+import com.gateway.redireccion.ventas.VentasPublicRoutes; //importa las rutas publicas de API Cupones
 
-import lombok.RequiredArgsConstructor;
+import lombok.RequiredArgsConstructor; //importa las rutas publicas de API Ventas
 
 @Configuration
 @RequiredArgsConstructor
@@ -48,6 +49,10 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, VentasPublicRoutes.VENTAS_PUBLIC_POST).permitAll()
                 .requestMatchers(HttpMethod.PUT, VentasPublicRoutes.VENTAS_PUBLIC_PUT).permitAll()
                 .requestMatchers(HttpMethod.DELETE, VentasPublicRoutes.VENTAS_PUBLIC_DELETE).permitAll()
+                .requestMatchers(HttpMethod.GET, VentasPublicRoutes.VENTAS_PUBLIC_GET_ID).permitAll()
+                .requestMatchers(HttpMethod.GET, VentasPublicRoutes.VENTAS_PUBLIC_GET_ID_CLIENTE).permitAll()
+                .requestMatchers(HttpMethod.POST, CuponesPublicRoutes.CUPONES_PUBLIC_POST).permitAll() // rutas publicas POST de Cupones
+                .requestMatchers(HttpMethod.GET, CuponesPublicRoutes.CUPONES_PUBLIC_GET).permitAll() // rutas publicas GET de Cupones
 
                 
                 // Otras URL Token obligatorio

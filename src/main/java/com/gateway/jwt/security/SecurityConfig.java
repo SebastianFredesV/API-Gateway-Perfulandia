@@ -46,6 +46,8 @@ public class SecurityConfig {
                 // URL públicas API Ventas
                 .requestMatchers(HttpMethod.GET, VentasPublicRoutes.VENTAS_PUBLIC_GET).permitAll()
                 .requestMatchers(HttpMethod.POST, VentasPublicRoutes.VENTAS_PUBLIC_POST).permitAll()
+                .requestMatchers(HttpMethod.PUT, VentasPublicRoutes.VENTAS_PUBLIC_PUT).permitAll()
+                .requestMatchers(HttpMethod.DELETE, VentasPublicRoutes.VENTAS_PUBLIC_DELETE).permitAll()
 
                 
                 // Otras URL Token obligatorio

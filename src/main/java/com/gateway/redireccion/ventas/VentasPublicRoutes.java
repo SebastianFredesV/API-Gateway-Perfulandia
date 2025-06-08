@@ -10,4 +10,14 @@ public class VentasPublicRoutes {
         "/api/proxy/ventas",
         "/api/proxy/ventas/"
     };
+
+    public static final String[] VENTAS_PUBLIC_PUT = {
+        "/api/proxy/ventas",
+        "/api/proxy/ventas/"
+    };
+
+    public static final String[] VENTAS_PUBLIC_DELETE = {
+        "/api/proxy/ventas",
+        "/api/proxy/ventas/"
+    };
 }

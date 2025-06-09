@@ -15,7 +15,12 @@ import static com.gateway.jwt.security.PublicRoutes.PUBLIC_POST; // Asegúrate d
 import static com.gateway.redireccion.clientes.ClientesPublicRoutes.CLIENTES_PUBLIC_GET; //importa las rutas publicas de jwt
 import static com.gateway.redireccion.cupones.CuponesPublicRoutes.CUPONES_PUBLIC_POST; //importa las rutas publicas de API Gateway
 import static com.gateway.redireccion.gestion.GestionPublicRoutes.GESTION_PUBLIC_GET; //importa las rutas publicas de API Productos
+
+import com.gateway.redireccion.envios.EnviosPublicRoutes;
 import com.gateway.redireccion.inventario.InventarioPublicRoutes; //importa las rutas publicas de API Clientes
+import com.gateway.redireccion.soporte.SoportePublicRoutes;
+import com.gateway.redireccion.vendedores.VendedoresPublicRoutes;
+
 import static com.gateway.redireccion.productos.ProductosPublicRoutes.PRODUCTOS_PUBLIC_GET; //importa las rutas publicas de API Cupones
 import com.gateway.redireccion.ventas.VentasPublicRoutes; //importa las rutas publicas de API Inventario
 
@@ -62,7 +67,27 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.PUT, InventarioPublicRoutes.INVENTARIO_PUBLIC_PUT).permitAll()
                 .requestMatchers(HttpMethod.DELETE, InventarioPublicRoutes.INVENTARIO_PUBLIC_DELETE).permitAll()
 
-                
+                // URL públicas API Vendedores
+                .requestMatchers(HttpMethod.GET, VendedoresPublicRoutes.VENDEDORES_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, VendedoresPublicRoutes.VENDEDORES_PUBLIC_GET_ID).permitAll()
+                .requestMatchers(HttpMethod.POST, VendedoresPublicRoutes.VENDEDORES_PUBLIC_POST).permitAll()
+                .requestMatchers(HttpMethod.PUT, VendedoresPublicRoutes.VENDEDORES_PUBLIC_PUT).permitAll()
+                .requestMatchers(HttpMethod.DELETE, VendedoresPublicRoutes.VENDEDORES_PUBLIC_DELETE).permitAll()
+
+                // URL públicas API Envios
+                .requestMatchers(HttpMethod.GET, EnviosPublicRoutes.ENVIOS_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, EnviosPublicRoutes.ENVIOS_PUBLIC_GET_ID).permitAll()
+                .requestMatchers(HttpMethod.POST, EnviosPublicRoutes.ENVIOS_PUBLIC_POST).permitAll()
+                .requestMatchers(HttpMethod.PUT, EnviosPublicRoutes.ENVIOS_PUBLIC_PUT).permitAll()
+                .requestMatchers(HttpMethod.DELETE, EnviosPublicRoutes.ENVIOS_PUBLIC_DELETE).permitAll()
+
+                // URL públicas API Soporte
+                .requestMatchers(HttpMethod.GET, SoportePublicRoutes.SOPORTE_PUBLIC_GET).permitAll()
+                .requestMatchers(HttpMethod.GET, SoportePublicRoutes.SOPORTE_PUBLIC_GET_ID).permitAll()
+                .requestMatchers(HttpMethod.GET, SoportePublicRoutes.SOPORTE_PUBLIC_GET_CLIENTE_ID).permitAll()
+                .requestMatchers(HttpMethod.POST, SoportePublicRoutes.SOPORTE_PUBLIC_POST).permitAll()
+                .requestMatchers(HttpMethod.PUT, SoportePublicRoutes.SOPORTE_PUBLIC_PUT_ESTADO).permitAll()
+
                 // Otras URL Token obligatorio
                 .anyRequest().authenticated()
 

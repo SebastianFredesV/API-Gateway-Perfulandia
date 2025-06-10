@@ -1,4 +1,4 @@
-package com.gateway.redireccion.ventas;
+package com.gateway.redireccion.cupones;
 
 public class CuponesPublicRoutes {
 
